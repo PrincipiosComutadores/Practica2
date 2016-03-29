@@ -1,0 +1,39 @@
+	.data
+flotante1: .float 3.5 
+destino: .space 4
+	.text
+main:
+lwc1 $f0,flotante1
+swc1 $f0,destino
+li.s $f0,3.2#carga inmediata simple precision
+li.d $f0,3.2#carga doble precision
+
+
+
++-------------------------------------------------------
+#la ->load adress para cadenas
+#li $v0,4
+#la s0,cadena
+#syscall
+
+	.data
+ent1: .word 7
+dest: .space 4
+	.text
+main:
+	lw $t0,ent1
+	ntc1 $t0,$f0  #copia tal cual
+	cvt.s.w $f2,$f0   #formato a convertir
+	cvt.d.s $f4,$f2
+
+---------------------------------------------------------
+	.data
+ent1: .word 7
+dest: .space 4
+	.text
+main:
+	li.s $f0,3.5
+	li.s $f2,2.3
+	c.eq.s $f0,$f2
+	bc1f et1
+et1:
